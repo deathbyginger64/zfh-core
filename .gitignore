@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+
+# ML Models (generated files)
+models/model.pkl
+models/path_mapping.pkl
+
+# Dataset (optional: keep or ignore)
+data/dataset.csv
+
+# OS files
+.DS_Store
