@@ -4,6 +4,18 @@
 
 ---
 
+## 🚧 Project Status
+
+> This project is currently under **active development**. Frequent updates and improvements are being pushed.
+
+| Component | Status |
+|---|---|
+| V1 — Rule-based topology restoration | ✅ Complete |
+| V2 (Core) — ML-based path prediction | ✅ Integrated |
+| V2 (Improvement) — Better dataset, features & evaluation | ⚠️ In Progress |
+
+---
+
 ## 🧠 Features
 
 - **Network Simulation** — Graph-based network modeling using NetworkX
