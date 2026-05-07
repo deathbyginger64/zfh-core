@@ -1,7 +1,7 @@
 from data.dataset_generator import DatasetGenerator
 
 def main():
-    generator = DatasetGenerator(num_samples=100)
+    generator = DatasetGenerator(num_samples=500)
     generator.generate()
 
 if __name__ == "__main__":

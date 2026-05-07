@@ -1,5 +1,7 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 import pickle
 
 
@@ -20,27 +22,45 @@ class ModelTrainer:
     def train(self):
         df = pd.read_csv(self.data_path)
 
-        # 🔥 CREATE PATH MAPPING
+        print("\n📊 Dataset Preview:")
+        print(df.head())
+
+        # Mapping
         categories = df["path"].astype("category").cat.categories
         path_mapping = dict(enumerate(categories))
 
         df = self.preprocess(df)
 
-        X = df[["node1", "node2"]]
+        # 🔥 ALL FEATURES
+        feature_cols = ["node1", "node2", "num_active_links"]
+        weight_cols = [col for col in df.columns if "_weight" in col]
+        feature_cols += weight_cols
+
+        X = df[feature_cols]
         y = df["path_label"]
 
-        model = RandomForestClassifier()
-        model.fit(X, y)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
 
-        # Save model
+        print(f"\n📊 Training samples: {len(X_train)}")
+        print(f"📊 Testing samples: {len(X_test)}")
+
+        model = RandomForestClassifier()
+        model.fit(X_train, y_train)
+
+        y_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+
+        print(f"\n🎯 Model Accuracy: {accuracy:.2f}")
+
         with open(self.model_path, "wb") as f:
             pickle.dump(model, f)
 
-        # Save mapping
         with open(self.mapping_path, "wb") as f:
             pickle.dump(path_mapping, f)
 
-        print("✅ Model and mapping saved successfully!")
+        print("\n✅ Model and mapping saved successfully!")
 
 
 if __name__ == "__main__":

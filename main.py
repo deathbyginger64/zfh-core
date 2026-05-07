@@ -4,25 +4,17 @@ from agents.ml_agent import MLAgent
 
 
 def main():
-    # Create network
     net = NetworkGraph()
     net.create_sample_network()
 
     print("\n--- INITIAL NETWORK ---")
     net.display()
 
-    # Inject fault
-    injector = FaultInjector(net.get_graph())
-
-    # Get edges and break one
     graph = net.get_graph()
+    injector = FaultInjector(graph)
+
     edges = list(graph.edges())
-
-    if not edges:
-        print("❌ No edges to break")
-        return
-
-    u, v = edges[0]   # you can randomize later
+    u, v = edges[0]
     injector.break_link(u, v)
 
     fault_edge = f"{u}-{v}"
@@ -30,13 +22,17 @@ def main():
     print("\n--- AFTER FAULT ---")
     net.display()
 
-    # ML Agent predicts path
+    # Active links
+    active_links = sum(
+        1 for (x, y) in graph.edges()
+        if graph[x][y]["status"] == "up"
+    )
+
     agent = MLAgent()
-    predicted_path = agent.predict_path(fault_edge)
+    predicted_path = agent.predict_path(fault_edge, active_links, graph)
 
     print("\n🤖 ML Predicted Path:", predicted_path)
 
-    # Apply fix manually (simulate rerouting)
     print("\n🛠 Applying ML-based fix...")
 
     for i in range(len(predicted_path) - 1):
