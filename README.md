@@ -1,37 +1,104 @@
-# Zero Fault Horizon (ZFH) — Core System
+# Zero Fault Horizon (ZFH) — AI-Driven Self-Healing Network System
 
-> An AI-driven self-healing network system that simulates network failures and uses Machine Learning to predict optimal rerouting paths.
+> A modular AI-powered network resilience platform that simulates network failures, performs intelligent rerouting, and learns recovery strategies using Machine Learning.
 
 ---
 
 ## 🚧 Project Status
 
-> This project is currently under **active development**. Frequent updates and improvements are being pushed.
+This project is under active development and evolving in phases.
 
-| Component | Status |
-|---|---|
-| V1 — Rule-based topology restoration | ✅ Complete |
-| V2 (Core) — ML-based path prediction | ✅ Integrated |
-| V2 (Improvement) — Better dataset, features & evaluation | ⚠️ In Progress |
-
----
-
-## 🧠 Features
-
-- **Network Simulation** — Graph-based network modeling using NetworkX
-- **Fault Injection** — Realistic link failure simulation
-- **Rule-Based Agent (V1)** — Deterministic fault response logic
-- **ML-Based Agent (V2)** — Intelligent, model-driven path decisions
-- **Dataset Generation Pipeline** — Automated training data creation
-- **Model Training** — Random Forest classifier for path prediction
+| Phase | Description | Status |
+|---|---|---|
+| V1 | Rule-based topology restoration | ✅ Complete |
+| V2 | Dynamic ML-based rerouting engine | ✅ Complete |
+| V3 | Root Cause Analysis (RCA) Agent | 🔄 Starting |
+| V4 | Optimization & Multi-Agent Intelligence | ⏳ Planned |
 
 ---
 
-## 🔄 System Flow
+## 🧠 Project Vision
+
+Zero Fault Horizon (ZFH) aims to simulate a future-ready autonomous network resilience platform capable of:
+
+- Detecting failures
+- Diagnosing root causes
+- Predicting recovery actions
+- Self-healing network paths
+- Optimizing traffic dynamically
+
+The long-term goal is to evolve toward an intelligent multi-agent telecom/network management system.
+
+---
+
+## 🔥 Current Capabilities
+
+### ✅ Network Simulation
+- Dynamic graph-based network modeling
+- Randomized edge weights
+- Real-time topology visualization in terminal
+
+### ✅ Fault Injection Engine
+- Simulates realistic link failures
+- Random fault generation
+- Edge status management (`up/down`)
+
+### ✅ Rule-Based Recovery (V1)
+- Deterministic topology restoration
+- Shortest-path rerouting using graph algorithms
+
+### ✅ ML-Based Recovery System (V2)
+- Supervised learning pipeline
+- Dynamic dataset generation
+- Feature engineering
+- RandomForest-based decision system
+- Weight-aware path prediction
+- Intelligent rerouting decisions
+
+---
+
+## 🔄 Current System Pipeline
 
 ```
-Network → Fault Injection → ML Model → Path Prediction → Fix Applied
+Dynamic Network
+      ↓
+Random Fault Injection
+      ↓
+Feature Extraction
+      ↓
+ML-Based Path Prediction
+      ↓
+Rerouting Decision
+      ↓
+Network Recovery
 ```
+
+---
+
+## 🧠 ML Pipeline
+
+### Dataset Generation
+
+The system automatically creates training datasets by:
+
+- Generating dynamic network topologies
+- Injecting random faults
+- Using a rule-based topology agent as the "teacher"
+- Saving optimal recovery paths as labeled data
+
+### Features Used
+
+Current ML features include:
+
+- Fault edge information
+- Active link count
+- Edge weights
+- Dynamic network state
+
+### Model
+
+- **Algorithm:** RandomForestClassifier (scikit-learn)
+- **Performance:** ~93% prediction accuracy on dynamic datasets
 
 ---
 
@@ -39,25 +106,63 @@ Network → Fault Injection → ML Model → Path Prediction → Fix Applied
 
 ```
 zfh_core/
-├── agents/             # Rule-based and ML-based agents
-├── network/            # Network topology and graph logic
-├── faults/             # Fault injection modules
-├── data/               # Generated datasets
-├── models/             # Trained ML models
-├── main.py             # Entry point — runs the full system
-├── train.py            # Dataset generation pipeline
-└── predict.py          # Inference and path prediction
+├── agents/
+│   ├── topology_agent.py
+│   └── ml_agent.py
+│
+├── network/
+│   └── graph.py
+│
+├── faults/
+│   └── injector.py
+│
+├── data/
+│   ├── dataset_generator.py
+│   └── dataset.csv
+│
+├── models/
+│   ├── train_model.py
+│   ├── model.pkl
+│   └── path_mapping.pkl
+│
+├── main.py
+├── train.py
+├── predict.py
+├── requirements.txt
+└── README.md
 ```
+
+---
+
+## ⚙️ Tech Stack
+
+| Area | Technology |
+|---|---|
+| Language | Python |
+| Graph Modeling | NetworkX |
+| Machine Learning | scikit-learn |
+| Data Handling | Pandas / NumPy |
+| Model | RandomForestClassifier |
+| Version Control | Git + GitHub |
 
 ---
 
 ## ⚙️ Setup
 
+**1. Clone Repository:**
 ```bash
 git clone <repo-url>
 cd zfh_core
+```
+
+**2. Create Virtual Environment:**
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
+
+**3. Install Dependencies:**
+```bash
 pip install -r requirements.txt
 ```
 
@@ -65,32 +170,58 @@ pip install -r requirements.txt
 
 ## ▶️ Usage
 
-**1. Generate dataset:**
+**1️⃣ Generate Dataset:**
 ```bash
 python train.py
 ```
+Generates dynamic network scenarios, random failures, and ML training data.
 
-**2. Train the model:**
+**2️⃣ Train ML Model:**
 ```bash
 python models/train_model.py
 ```
+Preprocesses features, trains the ML model, evaluates accuracy, and saves trained artifacts.
 
-**3. Run the system:**
+**3️⃣ Run Full System:**
 ```bash
 python main.py
 ```
+Creates the network, injects faults, performs ML-based rerouting, and applies recovery logic.
 
 ---
 
-## 🔭 Future Work
+## 🧠 Concepts Implemented
 
-- [ ] Multi-fault handling
-- [ ] Graph Neural Networks (GNN) integration
-- [ ] Root Cause Analysis agent
-- [ ] Network optimization agent
+**Networking** — Topology modeling, routing, rerouting, fault tolerance, network resilience
+
+**Machine Learning** — Supervised learning, feature engineering, label encoding, model evaluation, generalization vs memorization
+
+**Software Engineering** — Modular architecture, pipeline design, version control workflows, reproducible environments
+
+---
+
+## 🔭 Future Roadmap
+
+### V3 — Root Cause Analysis Agent
+- [ ] Latency simulation
+- [ ] Packet loss simulation
+- [ ] Traffic load analysis
+- [ ] Failure diagnosis engine
+
+### V4 — Multi-Agent Intelligence
+- [ ] Optimization agents
+- [ ] Predictive maintenance
+- [ ] Multi-fault recovery
+- [ ] Autonomous orchestration
+
+### V5 — Advanced AI
+- [ ] Graph Neural Networks (GNNs)
+- [ ] Reinforcement Learning
+- [ ] Real-time telemetry ingestion
 
 ---
 
 ## 👨‍💻 Author
 
 **Aditya Khandelwal**
+B.Tech CSE (Cyber Security) · AI + Networking + Autonomous Systems Enthusiast
